@@ -5,7 +5,7 @@ google.charts.setOnLoadCallback(main);
 
 function drawChart() {
     var data = google.visualization.arrayToDataTable([
-        ['Year', 'Sales'],
+        ['Day', 'Price'],
         ['2004',  1000],
         ['2005',  1170],
         ['2006',  660],
@@ -13,7 +13,7 @@ function drawChart() {
     ]);
 
     var options = {
-        title: 'Company Performance',
+        title: 'Exchange rate',
         curveType: 'function',
         legend: { position: 'bottom' }
     };
@@ -27,7 +27,7 @@ class Menu extends React.Component {
     render() {
         return (
             <div className="row">
-                <div className="col-3">
+                <div className="col">
                     <form>
                         <div className="form-group">
                             <label htmlFor="sell-amount">How much you wanna sell?</label>
@@ -38,7 +38,7 @@ class Menu extends React.Component {
                         </div>
                     </form>
                 </div>
-                <div className="col-3">
+                <div className="col">
                     <form>
                         <div className="form-group">
                             <label htmlFor="buy-amount">How much you wanna buy?</label>
@@ -55,9 +55,19 @@ class Menu extends React.Component {
 }
 
 class Graphics extends React.Component {
+    constructor(props) {
+        super(props);
+        this.divStyle = {
+            overflowX: "scroll",
+            overflowY: "hidden",    
+            width: "100%",
+            height: "500px"
+        };
+    }
+
     render() {
         return (
-            <div id="graph-container">
+            <div id="graph-container" className="row" style={this.divStyle}>
 
             </div>
         )
@@ -67,11 +77,16 @@ class Graphics extends React.Component {
 class Statistics extends React.Component {
     render() {
         return (
-            <div className="row mt-2">
+            <div className="row mt-4">
                 <div className="col">
                     <h2>You have:</h2>
                     <p>Money: 100</p>
                     <p>Securities: 0</p>
+                </div>
+                <div className="col">
+                    <h2>Current:</h2>
+                    <p>Day: 1</p>
+                    <p>Price: 100</p>
                 </div>
             </div>
         )
